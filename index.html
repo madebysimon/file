@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting</title>
+  <script>
+    // Base URL for redirection (configure this)
+    const baseUrl = "https://www.dropbox.com/home/";
+
+    // i.e.  Dropzone/Therapietools%20(PE%2C%20Modelle%20etc)
+
+    // Function to extract the slug/path from URL query parameters and redirect
+    function redirectToSlug() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const slug = urlParams.get("path");
+
+      if (slug) {
+        // Redirect to the constructed URL
+        window.location.href = `${baseUrl}/${slug}`;
+      } else {
+        // Handle the case where no path is provided
+        document.body.innerHTML = "<p>No path provided. Please use '?path=your-slug' in the URL.</p>";
+      }
+    }
+
+    // Redirect on page load
+    window.onload = redirectToSlug;
+  </script>
+</head>
+<body>
+</body>
+</html>
